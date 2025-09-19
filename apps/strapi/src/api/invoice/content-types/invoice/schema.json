@@ -1,0 +1,82 @@
+{
+  "kind": "collectionType",
+  "collectionName": "invoices",
+  "info": {
+    "singularName": "invoice",
+    "pluralName": "invoices",
+    "displayName": "Invoice"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "company": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::company.company",
+      "inversedBy": "invoices",
+      "required": true
+    },
+    "customer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "invoices",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["draft", "issued", "sent"],
+      "default": "draft"
+    },
+    "series": {
+      "type": "string"
+    },
+    "number": {
+      "type": "integer"
+    },
+    "issueDate": {
+      "type": "date"
+    },
+    "subtotal": {
+      "type": "decimal",
+      "default": 0
+    },
+    "taxTotal": {
+      "type": "decimal",
+      "default": 0
+    },
+    "total": {
+      "type": "decimal",
+      "default": 0
+    },
+    "currency": {
+      "type": "string",
+      "default": "EUR"
+    },
+    "facturaeUrl": {
+      "type": "string"
+    },
+    "pdfUrl": {
+      "type": "string"
+    },
+    "siiState": {
+      "type": "string"
+    },
+    "faceState": {
+      "type": "string"
+    },
+    "lines": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::invoice-line.invoice-line",
+      "mappedBy": "invoice"
+    },
+    "events": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::event.event",
+      "mappedBy": "invoice"
+    }
+  }
+}

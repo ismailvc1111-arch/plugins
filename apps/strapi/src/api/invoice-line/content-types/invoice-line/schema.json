@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "invoice_lines",
+  "info": {
+    "singularName": "invoice-line",
+    "pluralName": "invoice-lines",
+    "displayName": "Invoice Line"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "invoice": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::invoice.invoice",
+      "inversedBy": "lines",
+      "required": true
+    },
+    "product": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product.product",
+      "inversedBy": "invoice_lines"
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "qty": {
+      "type": "decimal",
+      "default": 1
+    },
+    "unitPrice": {
+      "type": "decimal",
+      "default": 0
+    },
+    "taxRate": {
+      "type": "decimal",
+      "default": 0
+    },
+    "lineTotal": {
+      "type": "decimal",
+      "default": 0
+    }
+  }
+}

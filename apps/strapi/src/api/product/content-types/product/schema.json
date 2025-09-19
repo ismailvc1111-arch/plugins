@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "Product"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "company": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::company.company",
+      "inversedBy": "products",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "defaultTaxRate": {
+      "type": "decimal",
+      "default": 0
+    },
+    "unitPrice": {
+      "type": "decimal",
+      "default": 0
+    },
+    "invoice_lines": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::invoice-line.invoice-line",
+      "mappedBy": "product"
+    }
+  }
+}
